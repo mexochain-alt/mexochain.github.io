@@ -1,965 +1,430 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>MEXO | Official Website</title>
+<title>MEXO | The Future of Digital Utility</title>
 
-<meta name="description" content="MEXO is a community-driven utility token built on TON Blockchain.">
+<meta name="description" content="MEXO is a next generation digital utility token built on TON Blockchain.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-/* ===== MEXO VISUAL UPGRADE ===== */
 
-.hero{
-position:relative;
-}
-
-.hero::before{
-
-content:"";
-
-position:absolute;
-
-width:420px;
-height:420px;
-
-background:radial-gradient(circle,#f5c54255,transparent 70%);
-
-filter:blur(20px);
-
-animation:pulseGlow 4s infinite;
-
-z-index:-1;
-
-}
-
-@keyframes pulseGlow{
-
-0%{
-transform:scale(1);
-opacity:.5;
-}
-
-50%{
-transform:scale(1.25);
-opacity:.9;
-}
-
-100%{
-transform:scale(1);
-opacity:.5;
-}
-
-}
-
-
-.hero img{
-
-animation:float 5s ease-in-out infinite, goldPulse 3s infinite;
-
-}
-
-
-@keyframes goldPulse{
-
-0%{
-
-filter:drop-shadow(0 0 20px #f5c542);
-
-}
-
-50%{
-
-filter:drop-shadow(0 0 55px #f5c542);
-
-}
-
-100%{
-
-filter:drop-shadow(0 0 20px #f5c542);
-
-}
-
-}
-
-
-.card{
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-
-.card::before{
-
-content:"";
-
-position:absolute;
-
-top:-50%;
-
-left:-50%;
-
-width:200%;
-
-height:200%;
-
-background:linear-gradient(
-
-120deg,
-
-transparent,
-
-rgba(255,255,255,.12),
-
-transparent
-
-);
-
-transform:rotate(25deg);
-
-transition:.7s;
-
-}
-
-
-.card:hover::before{
-
-left:100%;
-
-}
-
-
-.step{
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-
-.step::after{
-
-content:"";
-
-position:absolute;
-
-width:14px;
-
-height:14px;
-
-background:#f5c542;
-
-border-radius:50%;
-
-left:-10px;
-
-top:35px;
-
-box-shadow:0 0 25px #f5c542;
-
-}
-
-
-
-.btn{
-
-position:relative;
-
-overflow:hidden;
-
-}
-
-
-.btn::after{
-
-content:"";
-
-position:absolute;
-
-top:0;
-
-left:-100%;
-
-width:100%;
-
-height:100%;
-
-background:rgba(255,255,255,.25);
-
-transition:.5s;
-
-}
-
-
-.btn:hover::after{
-
-left:100%;
-
-}
-
-
-
-body{
-
-background-image:
-
-radial-gradient(circle at 20% 20%,rgba(245,197,66,.08),transparent 25%),
-
-radial-gradient(circle at 80% 80%,rgba(0,170,255,.08),transparent 25%);
-
-}
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
-html{
-scroll-behavior:smooth;
-}
-<div class="floating-stars">
-
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-<span></span>
-
-</div>
-
-
-<style>
-
-.floating-stars span{
-
-position:fixed;
-
-width:5px;
-
-height:5px;
-
-background:#f5c542;
-
-border-radius:50%;
-
-opacity:.7;
-
-animation:stars 12s linear infinite;
-
-z-index:-1;
-
-}
-
-
-.floating-stars span:nth-child(1){
-
-left:10%;
-
-animation-delay:0s;
-
-}
-
-.floating-stars span:nth-child(2){
-
-left:30%;
-
-animation-delay:3s;
-
-}
-
-.floating-stars span:nth-child(3){
-
-left:55%;
-
-animation-delay:6s;
-
-}
-
-.floating-stars span:nth-child(4){
-
-left:75%;
-
-animation-delay:2s;
-
-}
-
-.floating-stars span:nth-child(5){
-
-left:90%;
-
-animation-delay:8s;
-
-}
-
-
-@keyframes stars{
-
-0%{
-
-transform:translateY(100vh) scale(.5);
-
-}
-
-100%{
-
-transform:translateY(-20vh) scale(1.5);
-
-}
-
-}
-
-</style>
-body{
-
-font-family:'Poppins',sans-serif;
-
-background:#060910;
-
-color:#fff;
-
-overflow-x:hidden;
-
-}
-
-
-body::before{
-
-content:"";
-
-position:fixed;
-
-width:900px;
-height:900px;
-
-left:-250px;
-top:-250px;
-
-background:radial-gradient(circle,#e3b11d55,transparent 70%);
-
-z-index:-2;
-
-}
-
-body::after{
-
-content:"";
-
-position:fixed;
-
-width:700px;
-height:700px;
-
-right:-250px;
-bottom:-250px;
-
-background:radial-gradient(circle,#0aa8ff22,transparent 70%);
-
-z-index:-2;
-
-}
-
-
-
-nav{
-
-position:fixed;
-
-width:100%;
-
-top:0;
-
-padding:18px 8%;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-backdrop-filter:blur(18px);
-
-background:rgba(8,12,20,.45);
-
-border-bottom:1px solid rgba(255,255,255,.08);
-
-z-index:999;
-
-}
-
-.logo{
-
-display:flex;
-
-align-items:center;
-
-gap:15px;
-
-font-size:28px;
-
-font-weight:700;
-
-letter-spacing:2px;
-
-}
-
-.logo img{
-
-width:54px;
-
-border-radius:50%;
-
-box-shadow:0 0 30px rgba(255,205,0,.45);
-
-}
-
-.menu a{
-
-margin-left:30px;
-
-text-decoration:none;
-
-color:white;
-
-font-size:15px;
-
-transition:.3s;
-
-}
-
-.menu a:hover{
-
-color:#f7c846;
-
-}
-
-
-
-.hero{
-
-min-height:100vh;
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-text-align:center;
-
-padding:140px 20px 60px;
-
-}
-
-.hero img{
-
-width:180px;
-
-animation:float 5s ease-in-out infinite;
-
-filter:drop-shadow(0 0 35px rgba(255,200,0,.55));
-
-}
-
-@keyframes float{
-
-0%{transform:translateY(0);}
-50%{transform:translateY(-18px);}
-100%{transform:translateY(0);}
-
-}
-
-.hero h1{
-
-margin-top:25px;
-
-font-size:78px;
-
-font-weight:800;
-
-letter-spacing:5px;
-
-background:linear-gradient(90deg,#fff,#f6c542);
-
--webkit-background-clip:text;
-
--webkit-text-fill-color:transparent;
-
-}
-
-.hero p{
-
-margin-top:22px;
-
-font-size:21px;
-
-color:#d1d1d1;
-
-line-height:1.9;
-
-max-width:760px;
-
-margin-inline:auto;
-
-}
-
-.buttons{
-
-margin-top:45px;
-
-display:flex;
-
-justify-content:center;
-
-gap:18px;
-
-flex-wrap:wrap;
-
-}
-
-.btn{
-
-padding:17px 34px;
-
-border-radius:60px;
-
-font-weight:600;
-
-text-decoration:none;
-
-transition:.35s;
-
-}
-
-.buy{
-
-background:#f5c542;
-
-color:#111;
-
-}
-
-.buy:hover{
-
-transform:translateY(-5px);
-
-box-shadow:0 15px 35px rgba(245,197,66,.35);
-
-}
-
-.telegram{
-
-background:#169bff;
-
-color:white;
-
-}
-
-.telegram:hover{
-
-transform:translateY(-5px);
-
-}
-
-.x{
-
-background:white;
-
-color:black;
-
-}
-
-.x:hover{
-
-transform:translateY(-5px);
-
-}
-
-section{
-
-padding:90px 8%;
-
-}
-
-.title{
-
-text-align:center;
-
-font-size:42px;
-
-margin-bottom:50px;
-
-font-weight:700;
-
-}
-
-.cards{
-
-display:grid;
-
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-
-gap:28px;
-
-}
-
-.card{
-
-background:rgba(255,255,255,.05);
-
-backdrop-filter:blur(16px);
-
-border:1px solid rgba(255,255,255,.08);
-
-padding:30px;
-
-border-radius:22px;
-
-transition:.35s;
-
-}
-
-.card:hover{
-
-transform:translateY(-8px);
-
-border-color:#f5c542;
-
-box-shadow:0 18px 40px rgba(245,197,66,.12);
-
-}
-
-.card h3{
-
-color:#f5c542;
-
-margin-bottom:15px;
-
-font-size:24px;
-
-}
-
-.card p{
-
-line-height:1.8;
-
-color:#d6d6d6;
-
-}
-.timeline{
-
-margin-top:70px;
-
-display:flex;
-
-flex-direction:column;
-
-gap:28px;
-
-}
-
-.step{
-
-background:rgba(255,255,255,.05);
-
-border-left:5px solid #f5c542;
-
-padding:28px;
-
-border-radius:18px;
-
-transition:.35s;
-
-}
-
-.step:hover{
-
-transform:translateX(8px);
-
-background:rgba(255,255,255,.08);
-
-}
-
-.step h3{
-
-font-size:24px;
-
-margin-bottom:12px;
-
-color:#f5c542;
-
-}
-
-.step p{
-
-color:#d5d5d5;
-
-line-height:1.8;
-
-}
-
-.community{
-
-display:flex;
-
-justify-content:center;
-
-gap:25px;
-
-flex-wrap:wrap;
-
-margin-top:50px;
-
-}
-
-.community a{
-
-padding:18px 38px;
-
-border-radius:60px;
-
-text-decoration:none;
-
-font-weight:600;
-
-transition:.35s;
-
-}
-
-.community .tg{
-
-background:#1c9eff;
-
-color:white;
-
-}
-
-.community .tg:hover{
-
-transform:translateY(-6px);
-
-box-shadow:0 15px 30px rgba(28,158,255,.35);
-
-}
-
-.community .tw{
-
-background:white;
-
-color:black;
-
-}
-
-.community .tw:hover{
-
-transform:translateY(-6px);
-
-}
-
-footer{
-
-margin-top:100px;
-
-padding:60px 20px;
-
-text-align:center;
-
-color:#9c9c9c;
-
-border-top:1px solid rgba(255,255,255,.08);
-
-}
-
-.copyBox{
-
-margin:auto;
-
-margin-top:40px;
-
-max-width:900px;
-
-display:flex;
-
-justify-content:space-between;
-
-align-items:center;
-
-padding:20px 24px;
-
-border-radius:18px;
-
-background:rgba(255,255,255,.05);
-
-border:1px solid rgba(255,255,255,.08);
-
-gap:15px;
-
-flex-wrap:wrap;
-
-}
-
-.copyBox code{
-
-font-size:15px;
-
-color:#f5c542;
-
-word-break:break-all;
-
-}
-
-.copyBtn{
-
-padding:12px 22px;
-
-border:none;
-
-border-radius:40px;
-
-cursor:pointer;
-
-background:#f5c542;
-
-font-weight:700;
-
-transition:.3s;
-
-}
-
-.copyBtn:hover{
-
-transform:scale(1.05);
-
-}
-
-@media(max-width:768px){
-
-.hero h1{
-
-font-size:52px;
-
-}
-
-.hero p{
-
-font-size:18px;
-
-}
-
-.menu{
-
-display:none;
-
-}
-
-.logo{
-
-font-size:22px;
-
-}
-
-.logo img{
-
-width:45px;
-
-}
-
-.copyBox{
-
-flex-direction:column;
-
-text-align:center;
-
-}
-
-}
-
-</style>
+<link rel="stylesheet" href="style.css">
 
 </head>
 
 <body>
-<nav>
+
+<div class="background"></div>
+
+<header>
+
+<div class="container nav">
 
 <div class="logo">
 
-<img src="https://raw.githubusercontent.com/hassankhalili2535-arch/mexo1-assets/main/logo.png" alt="MEXO">
+<img src="assets/logo.png" alt="MEXO">
 
 <span>MEXO</span>
 
 </div>
 
-<div class="menu">
+<nav>
 
 <a href="#about">About</a>
 
 <a href="#token">Token</a>
 
-<a href="#vision">Vision</a>
-
 <a href="#roadmap">Roadmap</a>
 
 <a href="#community">Community</a>
 
-</div>
+<a href="#whitepaper">Whitepaper</a>
 
 </nav>
 
-
-
-<section class="hero">
-
-<div>
-
-<img src="https://raw.githubusercontent.com/hassankhalili2535-arch/mexo1-assets/main/logo.png" alt="MEXO">
-
-<h1>MEXO</h1>
-
-<p>
-
-Empowering the Future of Digital Utility<br>
-
-Built on TON Blockchain
-
-</p>
-
-<div class="buttons">
-
-<a href="#" class="btn buy">
+<a href="#" class="buy-btn">
 
 Buy MEXO
 
 </a>
 
-<a
+</div>
 
-href="https://t.me/mexocoin"
+</header>
 
-target="_blank"
+<section class="hero">
 
-class="btn telegram">
+<div class="hero-glow"></div>
+
+<div class="container hero-content">
+
+<img class="hero-logo" src="assets/logo.png" alt="MEXO">
+
+<h1>
+
+The Future of Digital Utility
+
+</h1>
+
+<p>
+
+Built on TON Blockchain
+
+Fast • Secure • Community Driven
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#" class="gold-btn">
+
+Buy MEXO
+
+</a>
+
+<a href="https://t.me/mexocoin" target="_blank" class="glass-btn">
 
 Telegram
 
 </a>
 
-<a
+<a href="https://x.com/mexochain" target="_blank" class="glass-btn">
 
-href="https://x.com/mexochain"
+X
 
-target="_blank"
+</a>
 
-class="btn x">
+</div>
+
+</div>
+
+</section>
+
+<section class="stats">
+
+<div class="container stat-grid">
+
+<div class="stat-card">
+
+<h2 id="supplyCounter">
+
+11B
+
+</h2>
+
+<p>Total Supply</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>
+
+TON
+
+</h2>
+
+<p>Blockchain</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>
+
+Fast
+
+</h2>
+
+<p>Transactions</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>
+
+Secure
+
+</h2>
+
+<p>Smart Contract</p>
+
+</div>
+
+</div>
+
+</section>
+<section id="about" class="about">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>About MEXO</h2>
+
+<p>
+
+MEXO is a next-generation digital utility token designed to build a fast, transparent and community-driven ecosystem on TON Blockchain.
+
+</p>
+
+</div>
+
+<div class="feature-grid">
+
+<div class="feature-card">
+
+<div class="icon">⚡</div>
+
+<h3>Lightning Fast</h3>
+
+<p>
+
+Powered by TON for near-instant transactions and low fees.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="icon">🔒</div>
+
+<h3>Secure</h3>
+
+<p>
+
+Built on TON infrastructure with transparent smart contracts.
+
+</p>
+
+</div>
+
+<div class="feature-card">
+
+<div class="icon">🌍</div>
+
+<h3>Community Driven</h3>
+
+<p>
+
+The future of MEXO belongs to its community.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="token" class="token-section">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>MEXO Token</h2>
+
+<p>
+
+Digital Utility Asset for the TON Ecosystem
+
+</p>
+
+</div>
+
+
+<div class="token-layout">
+
+<div class="token-logo">
+
+<img src="assets/logo.png" alt="MEXO">
+
+</div>
+
+
+<div class="token-info">
+
+<div class="info-row">
+
+<span>Name</span>
+
+<strong>MEXO</strong>
+
+</div>
+
+<div class="info-row">
+
+<span>Symbol</span>
+
+<strong>MEXO</strong>
+
+</div>
+
+<div class="info-row">
+
+<span>Blockchain</span>
+
+<strong>TON</strong>
+
+</div>
+
+<div class="info-row">
+
+<span>Total Supply</span>
+
+<strong>11,000,000,000</strong>
+
+</div>
+
+<div class="info-row">
+
+<span>Jetton Master</span>
+
+<code>
+
+EQAo4m8qfEvTyzDl-z_yxUwaQB48nHsSjsi-TmYNvZtMQjx-
+
+</code>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="roadmap" class="roadmap">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>Roadmap</h2>
+
+<p>
+
+Building the Future Step by Step
+
+</p>
+
+</div>
+
+
+<div class="timeline">
+
+<div class="timeline-item">
+
+<div class="dot"></div>
+
+<h3>Phase 1</h3>
+
+<p>
+
+Launch
+
+Community
+
+Website
+
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="dot"></div>
+
+<h3>Phase 2</h3>
+
+<p>
+
+Marketing
+
+Growth
+
+Partnerships
+
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="dot"></div>
+
+<h3>Phase 3</h3>
+
+<p>
+
+Exchange Listings
+
+Utility Expansion
+
+</p>
+
+</div>
+
+<div class="timeline-item">
+
+<div class="dot"></div>
+
+<h3>Phase 4</h3>
+
+<p>
+
+Global Ecosystem
+
+Long-Term Development
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<section id="community" class="community">
+
+<div class="container">
+
+<div class="section-title">
+
+<h2>Join Our Community</h2>
+
+<p>
+
+Become part of the growing MEXO ecosystem.
+
+</p>
+
+</div>
+
+<div class="community-buttons">
+
+<a href="https://t.me/mexocoin" target="_blank" class="telegram-btn">
+
+Telegram
+
+</a>
+
+<a href="https://x.com/mexochain" target="_blank" class="x-btn">
 
 X (Twitter)
 
@@ -972,243 +437,23 @@ X (Twitter)
 </section>
 
 
+<section class="contract">
 
-<section id="token">
+<div class="container">
 
-<h2 class="title">
+<div class="section-title">
 
-Token Information
-
-</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<h3>Name</h3>
-
-<p>MEXO</p>
-
-</div>
-
-<div class="card">
-
-<h3>Symbol</h3>
-
-<p>MEXO</p>
-
-</div>
-
-<div class="card">
-
-<h3>Network</h3>
-
-<p>TON Blockchain</p>
-
-</div>
-
-<div class="card">
-
-<h3>Total Supply</h3>
-
-<p>11 Billion</p>
-
-</div>
-
-<div class="card">
-
-<h3>Decimals</h3>
-
-<p>9</p>
-
-</div>
-
-<div class="card">
-
-<h3>Status</h3>
-
-<p>Active</p>
-
-</div>
-
-</div>
-
-</section>
-<section id="vision">
-
-<h2 class="title">
-
-Vision
-
-</h2>
-
-<div class="cards">
-
-<div class="card">
-
-<h3>Utility</h3>
+<h2>Jetton Master Contract</h2>
 
 <p>
 
-MEXO is designed as a long-term utility token focused on real digital services and sustainable growth within the TON ecosystem.
+Always verify the official contract before interacting.
 
 </p>
 
 </div>
 
-<div class="card">
-
-<h3>Security</h3>
-
-<p>
-
-Powered by the speed and security of TON Blockchain with transparent and decentralized infrastructure.
-
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Community</h3>
-
-<p>
-
-A community-driven project where holders participate in building the future of the ecosystem.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<section id="roadmap">
-
-<h2 class="title">
-
-Roadmap
-
-</h2>
-
-<div class="timeline">
-
-<div class="step">
-
-<h3>Phase 1</h3>
-
-<p>
-
-Launch Token<br>
-
-Official Website<br>
-
-Telegram & X
-
-</p>
-
-</div>
-
-<div class="step">
-
-<h3>Phase 2</h3>
-
-<p>
-
-Community Growth<br>
-
-DEX Listing<br>
-
-Marketing Campaign
-
-</p>
-
-</div>
-
-<div class="step">
-
-<h3>Phase 3</h3>
-
-<p>
-
-New Utilities<br>
-
-Partnerships<br>
-
-Ecosystem Expansion
-
-</p>
-
-</div>
-
-<div class="step">
-
-<h3>Phase 4</h3>
-
-<p>
-
-Global Adoption<br>
-
-Real World Utility<br>
-
-Long-term Development
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-
-<section id="community">
-
-<h2 class="title">
-
-Join Our Community
-
-</h2>
-
-<div class="community">
-
-<a class="tg"
-
-href="https://t.me/mexocoin"
-
-target="_blank">
-
-Join Telegram
-
-</a>
-
-<a class="tw"
-
-href="https://x.com/mexochain"
-
-target="_blank">
-
-Follow on X
-
-</a>
-
-</div>
-
-</section>
-<section id="contract">
-
-<h2 class="title">
-
-Contract
-
-</h2>
-
-
-<div class="copyBox">
+<div class="contract-box">
 
 <code id="contractAddress">
 
@@ -1216,68 +461,114 @@ EQAo4m8qfEvTyzDl-z_yxUwaQB48nHsSjsi-TmYNvZtMQjx-
 
 </code>
 
+<button id="copyBtn">
 
-<button class="copyBtn" onclick="copyContract()">
-
-Copy
+Copy Contract
 
 </button>
+
+</div>
 
 </div>
 
 </section>
 
 
+<section id="whitepaper" class="whitepaper">
 
-<footer>
+<div class="container">
 
-<img 
+<div class="section-title">
 
-src="https://raw.githubusercontent.com/hassankhalili2535-arch/mexo1-assets/main/logo.png"
-
-alt="MEXO"
-
-style="width:70px;border-radius:50%;margin-bottom:20px;">
-
-
-<h3>
-
-MEXO
-
-</h3>
-
+<h2>Whitepaper</h2>
 
 <p>
 
-Native utility token built on TON Blockchain.
+The Whitepaper will be published soon.
+
+Stay connected through Telegram and X.
 
 </p>
 
+</div>
 
-<p style="margin-top:20px;">
+</div>
 
-© 2026 MEXO. All rights reserved.
+</section>
+
+
+<footer>
+
+<div class="container footer-grid">
+
+<div>
+
+<img src="assets/logo.png" class="footer-logo">
+
+<h3>MEXO</h3>
+
+<p>
+
+The Future of Digital Utility
+
+Built on TON Blockchain.
 
 </p>
+
+</div>
+
+<div>
+
+<h4>Community</h4>
+
+<a href="https://t.me/mexocoin" target="_blank">
+
+Telegram
+
+</a>
+
+<a href="https://x.com/mexochain" target="_blank">
+
+X
+
+</a>
+
+</div>
+
+<div>
+
+<h4>Token</h4>
+
+<p>
+
+Blockchain
+
+TON
+
+</p>
+
+<p>
+
+Supply
+
+11 Billion
+
+</p>
+
+</div>
+
+</div>
+
+<div class="copyright">
+
+© 2026 MEXO. All Rights Reserved.
+
+</div>
 
 </footer>
 
 
-
-<script>
-
-function copyContract(){
-
-let address = document.getElementById("contractAddress").innerText;
-
-navigator.clipboard.writeText(address);
-
-alert("Contract address copied!");
-
-}
-
-</script>
-
+<script src="script.js"></script>
 
 </body>
 
