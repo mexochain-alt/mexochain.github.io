@@ -13,7 +13,210 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+/* ===== MEXO VISUAL UPGRADE ===== */
 
+.hero{
+position:relative;
+}
+
+.hero::before{
+
+content:"";
+
+position:absolute;
+
+width:420px;
+height:420px;
+
+background:radial-gradient(circle,#f5c54255,transparent 70%);
+
+filter:blur(20px);
+
+animation:pulseGlow 4s infinite;
+
+z-index:-1;
+
+}
+
+@keyframes pulseGlow{
+
+0%{
+transform:scale(1);
+opacity:.5;
+}
+
+50%{
+transform:scale(1.25);
+opacity:.9;
+}
+
+100%{
+transform:scale(1);
+opacity:.5;
+}
+
+}
+
+
+.hero img{
+
+animation:float 5s ease-in-out infinite, goldPulse 3s infinite;
+
+}
+
+
+@keyframes goldPulse{
+
+0%{
+
+filter:drop-shadow(0 0 20px #f5c542);
+
+}
+
+50%{
+
+filter:drop-shadow(0 0 55px #f5c542);
+
+}
+
+100%{
+
+filter:drop-shadow(0 0 20px #f5c542);
+
+}
+
+}
+
+
+.card{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+top:-50%;
+
+left:-50%;
+
+width:200%;
+
+height:200%;
+
+background:linear-gradient(
+
+120deg,
+
+transparent,
+
+rgba(255,255,255,.12),
+
+transparent
+
+);
+
+transform:rotate(25deg);
+
+transition:.7s;
+
+}
+
+
+.card:hover::before{
+
+left:100%;
+
+}
+
+
+.step{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+.step::after{
+
+content:"";
+
+position:absolute;
+
+width:14px;
+
+height:14px;
+
+background:#f5c542;
+
+border-radius:50%;
+
+left:-10px;
+
+top:35px;
+
+box-shadow:0 0 25px #f5c542;
+
+}
+
+
+
+.btn{
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+
+.btn::after{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-100%;
+
+width:100%;
+
+height:100%;
+
+background:rgba(255,255,255,.25);
+
+transition:.5s;
+
+}
+
+
+.btn:hover::after{
+
+left:100%;
+
+}
+
+
+
+body{
+
+background-image:
+
+radial-gradient(circle at 20% 20%,rgba(245,197,66,.08),transparent 25%),
+
+radial-gradient(circle at 80% 80%,rgba(0,170,255,.08),transparent 25%);
+
+}
 <style>
 
 *{
@@ -25,7 +228,98 @@ box-sizing:border-box;
 html{
 scroll-behavior:smooth;
 }
+<div class="floating-stars">
 
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+
+</div>
+
+
+<style>
+
+.floating-stars span{
+
+position:fixed;
+
+width:5px;
+
+height:5px;
+
+background:#f5c542;
+
+border-radius:50%;
+
+opacity:.7;
+
+animation:stars 12s linear infinite;
+
+z-index:-1;
+
+}
+
+
+.floating-stars span:nth-child(1){
+
+left:10%;
+
+animation-delay:0s;
+
+}
+
+.floating-stars span:nth-child(2){
+
+left:30%;
+
+animation-delay:3s;
+
+}
+
+.floating-stars span:nth-child(3){
+
+left:55%;
+
+animation-delay:6s;
+
+}
+
+.floating-stars span:nth-child(4){
+
+left:75%;
+
+animation-delay:2s;
+
+}
+
+.floating-stars span:nth-child(5){
+
+left:90%;
+
+animation-delay:8s;
+
+}
+
+
+@keyframes stars{
+
+0%{
+
+transform:translateY(100vh) scale(.5);
+
+}
+
+100%{
+
+transform:translateY(-20vh) scale(1.5);
+
+}
+
+}
+
+</style>
 body{
 
 font-family:'Poppins',sans-serif;
