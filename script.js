@@ -1,106 +1,131 @@
-// Counter Animation
+document.addEventListener("DOMContentLoaded",()=>{
 
-const counters = document.querySelectorAll(".stat-card h2");
+const container=document.getElementById("particles");
 
-counters.forEach(counter=>{
+if(container){
 
-const target=counter.innerText;
+for(let i=0;i<60;i++){
 
-if(!isNaN(parseInt(target))){
+const p=document.createElement("span");
 
-let value=0;
+const size=Math.random()*6+2;
 
-const end=parseInt(target);
+p.style.position="absolute";
 
-const timer=setInterval(()=>{
+p.style.width=size+"px";
 
-value+=Math.ceil(end/60);
+p.style.height=size+"px";
 
-if(value>=end){
+p.style.borderRadius="50%";
 
-value=end;
+p.style.background="rgba(255,210,70,"+(Math.random()*0.8+0.2)+")";
 
-clearInterval(timer);
+p.style.left=Math.random()*100+"%";
 
-}
+p.style.top=Math.random()*100+"%";
 
-counter.innerText=value+"B";
+p.style.boxShadow="0 0 15px rgba(255,200,0,.8)";
 
-},30);
+p.style.animation=`float ${Math.random()*10+10}s linear infinite`;
 
-}
+p.style.animationDelay=`-${Math.random()*20}s`;
 
-});
-
-
-// Copy Contract
-
-const copyBtn=document.getElementById("copyBtn");
-
-if(copyBtn){
-
-copyBtn.addEventListener("click",()=>{
-
-const address=document.getElementById("contractAddress").innerText;
-
-navigator.clipboard.writeText(address);
-
-copyBtn.innerText="Copied ✓";
-
-setTimeout(()=>{
-
-copyBtn.innerText="Copy Contract";
-
-},2000);
-
-});
+container.appendChild(p);
 
 }
 
+}
 
-// Scroll Animation
+const style=document.createElement("style");
 
-const observer=new IntersectionObserver((entries)=>{
+style.innerHTML=`
+
+.particles{
+
+position:fixed;
+
+inset:0;
+
+pointer-events:none;
+
+overflow:hidden;
+
+z-index:-2;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(120vh) translateX(0);
+
+opacity:0;
+
+}
+
+10%{
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(-120vh) translateX(60px);
+
+opacity:0;
+
+}
+
+}
+
+.reveal{
+
+opacity:0;
+
+transform:translateY(60px);
+
+transition:1s;
+
+}
+
+.reveal.active{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+`;
+
+document.head.appendChild(style);
+
+document
+
+.querySelectorAll("section")
+
+.forEach(s=>s.classList.add("reveal"));
+
+const observer=new IntersectionObserver(entries=>{
 
 entries.forEach(entry=>{
 
 if(entry.isIntersecting){
 
-entry.target.style.opacity="1";
-
-entry.target.style.transform="translateY(0px)";
+entry.target.classList.add("active");
 
 }
 
 });
 
-},{threshold:.2});
+},{threshold:.15});
 
-document.querySelectorAll(".feature-card,.stat-card,.timeline-item").forEach(el=>{
+document
 
-el.style.opacity="0";
+.querySelectorAll(".reveal")
 
-el.style.transform="translateY(40px)";
-
-el.style.transition=".8s";
-
-observer.observe(el);
+.forEach(el=>observer.observe(el));
 
 });
-
-
-// Hero Glow
-
-const glow=document.querySelector(".hero-glow");
-
-let angle=0;
-
-setInterval(()=>{
-
-angle+=0.4;
-
-glow.style.transform=
-
-`translate(${Math.sin(angle)*15}px,${Math.cos(angle)*10}px)`;
-
-},30);
