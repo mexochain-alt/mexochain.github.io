@@ -1,131 +1,156 @@
-document.addEventListener("DOMContentLoaded",()=>{
+// ================================
+// MEXOCHAIN
+// Premium Script
+// ================================
 
-const container=document.getElementById("particles");
+const contractButton = document.getElementById("copyContract");
+const contractText = document.getElementById("contract");
 
-if(container){
+if (contractButton) {
 
-for(let i=0;i<60;i++){
+contractButton.addEventListener("click",()=>{
 
-const p=document.createElement("span");
+navigator.clipboard.writeText(contractText.innerText);
 
-const size=Math.random()*6+2;
+const oldText = contractButton.innerText;
 
-p.style.position="absolute";
+contractButton.innerText="Copied ✓";
 
-p.style.width=size+"px";
+setTimeout(()=>{
 
-p.style.height=size+"px";
+contractButton.innerText=oldText;
 
-p.style.borderRadius="50%";
+},1800);
 
-p.style.background="rgba(255,210,70,"+(Math.random()*0.8+0.2)+")";
-
-p.style.left=Math.random()*100+"%";
-
-p.style.top=Math.random()*100+"%";
-
-p.style.boxShadow="0 0 15px rgba(255,200,0,.8)";
-
-p.style.animation=`float ${Math.random()*10+10}s linear infinite`;
-
-p.style.animationDelay=`-${Math.random()*20}s`;
-
-container.appendChild(p);
+});
 
 }
 
-}
+// ===================================
+// Reveal Animation
+// ===================================
 
-const style=document.createElement("style");
+const revealItems=document.querySelectorAll(
 
-style.innerHTML=`
+".about-card,.token-card,.team-card,.roadmap-card,.faq-item"
 
-.particles{
+);
 
-position:fixed;
+const revealObserver=new IntersectionObserver(
 
-inset:0;
-
-pointer-events:none;
-
-overflow:hidden;
-
-z-index:-2;
-
-}
-
-@keyframes float{
-
-0%{
-
-transform:translateY(120vh) translateX(0);
-
-opacity:0;
-
-}
-
-10%{
-
-opacity:1;
-
-}
-
-100%{
-
-transform:translateY(-120vh) translateX(60px);
-
-opacity:0;
-
-}
-
-}
-
-.reveal{
-
-opacity:0;
-
-transform:translateY(60px);
-
-transition:1s;
-
-}
-
-.reveal.active{
-
-opacity:1;
-
-transform:translateY(0);
-
-}
-
-`;
-
-document.head.appendChild(style);
-
-document
-
-.querySelectorAll("section")
-
-.forEach(s=>s.classList.add("reveal"));
-
-const observer=new IntersectionObserver(entries=>{
+(entries)=>{
 
 entries.forEach(entry=>{
 
 if(entry.isIntersecting){
 
-entry.target.classList.add("active");
+entry.target.style.opacity="1";
+
+entry.target.style.transform="translateY(0)";
 
 }
 
 });
 
-},{threshold:.15});
+},
 
-document
+{
 
-.querySelectorAll(".reveal")
+threshold:.15
 
-.forEach(el=>observer.observe(el));
+}
+
+);
+
+revealItems.forEach(item=>{
+
+item.style.opacity="0";
+
+item.style.transform="translateY(60px)";
+
+item.style.transition=".8s ease";
+
+revealObserver.observe(item);
 
 });
+
+// ===================================
+// Mouse Glow
+// ===================================
+
+const glowLeft=document.querySelector(".glow-left");
+const glowRight=document.querySelector(".glow-right");
+
+document.addEventListener("mousemove",(e)=>{
+
+const x=e.clientX/window.innerWidth;
+
+const y=e.clientY/window.innerHeight;
+
+if(glowLeft){
+
+glowLeft.style.transform=
+
+`translate(${x*40}px,${y*40}px)`;
+
+}
+
+if(glowRight){
+
+glowRight.style.transform=
+
+`translate(${-x*50}px,${-y*50}px)`;
+
+}
+
+});
+
+// ===================================
+// Smooth Header
+// ===================================
+
+const header=document.querySelector("header");
+
+window.addEventListener("scroll",()=>{
+
+if(window.scrollY>40){
+
+header.style.background="rgba(5,5,5,.82)";
+
+header.style.boxShadow="0 10px 40px rgba(0,0,0,.35)";
+
+}else{
+
+header.style.background="rgba(5,5,5,.55)";
+
+header.style.boxShadow="none";
+
+}
+
+});
+
+// ===================================
+// Floating Hero Logo
+// ===================================
+
+const heroLogo=document.querySelector(".hero-logo");
+
+let angle=0;
+
+function animateHero(){
+
+angle+=0.01;
+
+if(heroLogo){
+
+heroLogo.style.transform=
+
+`translateY(${Math.sin(angle)*10}px)`;
+
+}
+
+requestAnimationFrame(animateHero);
+
+}
+
+animateHero();
