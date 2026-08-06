@@ -1,45 +1,191 @@
-/* ==========================================
-   MEXOTOKEN
-   Premium Website
-========================================== */
+/*==================================================
+MEXOTOKEN
+Premium Website
+Part 1
+==================================================*/
 
 document.addEventListener("DOMContentLoaded", () => {
 
-const copyButton = document.getElementById("copyContract");
+    /*==================================
+      Copy Smart Contract
+    ==================================*/
 
-const contract = document.getElementById("contract");
+    const copyButton = document.getElementById("copyContract");
+    const contract = document.getElementById("contract");
 
-if (copyButton && contract) {
+    if (copyButton && contract) {
 
-copyButton.addEventListener("click", async () => {
+        copyButton.addEventListener("click", async () => {
 
-try {
+            try {
 
-await navigator.clipboard.writeText(contract.textContent.trim());
+                await navigator.clipboard.writeText(
+                    contract.textContent.trim()
+                );
 
-const originalText = copyButton.textContent;
+                const original = copyButton.innerHTML;
 
-copyButton.textContent = "Copied ✓";
+                copyButton.innerHTML = "Copied ✓";
 
-copyButton.style.background = "#1ba94c";
+                copyButton.style.background = "#18b35d";
 
-setTimeout(() => {
+                setTimeout(() => {
 
-copyButton.textContent = originalText;
+                    copyButton.innerHTML = original;
 
-copyButton.style.background = "";
+                    copyButton.style.background = "";
 
-}, 2000);
+                }, 2000);
 
-} catch (error) {
+            } catch (err) {
 
-alert("Unable to copy contract address.");
+                alert("Copy failed.");
+
+            }
+
+        });
+
+    }
+
+    /*==================================
+      Header Scroll Effect
+    ==================================*/
+
+    const header = document.querySelector("header");
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 50) {
+
+            header.style.background = "rgba(5,5,5,.96)";
+            header.style.backdropFilter = "blur(22px)";
+            header.style.boxShadow =
+                "0 10px 40px rgba(0,0,0,.45)";
+
+        } else {
+
+            header.style.background = "rgba(5,5,5,.84)";
+            header.style.boxShadow = "none";
+
+        }
+
+    });
+
+});
+
+/*==================================================
+Navigation Active State
+==================================================*/
+
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+window.addEventListener("scroll", () => {
+
+    let current = "";
+
+    sections.forEach(section => {
+
+        const top = section.offsetTop - 140;
+        const height = section.offsetHeight;
+
+        if (window.scrollY >= top &&
+            window.scrollY < top + height) {
+
+            current = section.getAttribute("id");
+
+        }
+
+    });
+
+    navLinks.forEach(link => {
+
+        link.classList.remove("active");
+
+        if (link.getAttribute("href") === "#" + current) {
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+});
+
+
+/*==================================================
+Reveal Animation
+==================================================*/
+
+const revealItems = document.querySelectorAll(
+
+".about-card,\
+.token-card,\
+.team-card,\
+.roadmap-card,\
+.faq-item"
+
+);
+
+const observer = new IntersectionObserver(
+
+(entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.classList.add("show");
 
 }
 
 });
 
+},
+
+{
+
+threshold:0.18
+
 }
+
+);
+
+revealItems.forEach(item=>{
+
+item.classList.add("hidden");
+
+observer.observe(item);
+
+});
+
+
+/*==================================================
+Smooth Hover Buttons
+==================================================*/
+
+const buttons = document.querySelectorAll(
+
+".gold-btn,\
+.outline-btn,\
+.hero-community-btn,\
+.launch-btn"
+
+);
+
+buttons.forEach(button=>{
+
+button.addEventListener("mouseenter",()=>{
+
+button.style.transform="translateY(-3px)";
+
+});
+
+button.addEventListener("mouseleave",()=>{
+
+button.style.transform="translateY(0px)";
+
+});
 
 });
 
@@ -69,92 +215,94 @@ nav a.active::after{
 width:100%;
 
 }
-
-/* ==========================================
-   Hero Coin Parallax
-========================================== */
+/*==================================================
+Hero Logo Parallax
+==================================================*/
 
 const heroLogo = document.querySelector(".hero-logo");
 
 document.addEventListener("mousemove", (e) => {
 
-if (!heroLogo) return;
+    if (!heroLogo) return;
 
-const x = (window.innerWidth / 2 - e.clientX) / 45;
-const y = (window.innerHeight / 2 - e.clientY) / 45;
+    const x = (window.innerWidth / 2 - e.clientX) / 45;
+    const y = (window.innerHeight / 2 - e.clientY) / 45;
 
-heroLogo.style.transform =
-`translate(${x}px, ${y}px)`;
-
-});
-
-
-/* ==========================================
-   Floating Cards Animation
-========================================== */
-
-const cards = document.querySelectorAll(".floating-card");
-
-cards.forEach((card, index) => {
-
-const speed = (index + 1) * 0.6;
-
-setInterval(() => {
-
-const offset = Math.sin(Date.now() / 1200 * speed) * 6;
-
-card.style.transform = `translateY(${offset}px)`;
-
-}, 30);
+    heroLogo.style.transform =
+        `translate(${x}px, ${y}px)`;
 
 });
 
 
-/* ==========================================
-   Hero Logo Hover
-========================================== */
+/*==================================================
+Floating Cards Animation
+==================================================*/
+
+const floatingCards = document.querySelectorAll(".floating-card");
+
+floatingCards.forEach((card, index) => {
+
+    const speed = (index + 1) * 0.8;
+
+    setInterval(() => {
+
+        const offset = Math.sin(Date.now() / 1000 * speed) * 6;
+
+        card.style.transform = `translateY(${offset}px)`;
+
+    }, 30);
+
+});
+
+
+/*==================================================
+Hero Logo Hover
+==================================================*/
 
 if (heroLogo) {
 
-heroLogo.addEventListener("mouseenter", () => {
+    heroLogo.addEventListener("mouseenter", () => {
 
-heroLogo.style.transition = ".4s ease";
+        heroLogo.style.transition = ".4s ease";
+        heroLogo.style.scale = "1.04";
 
-heroLogo.style.scale = "1.04";
+    });
 
-});
+    heroLogo.addEventListener("mouseleave", () => {
 
-heroLogo.addEventListener("mouseleave", () => {
+        heroLogo.style.scale = "1";
 
-heroLogo.style.scale = "1";
-
-});
+    });
 
 }
 
 
-/* ==========================================
-   Buttons Hover Effect
-========================================== */
+/*==================================================
+Smooth Scroll For Internal Links
+==================================================*/
 
-const buttons = document.querySelectorAll(
-".gold-btn,.outline-btn,.hero-community-btn,.launch-btn"
-);
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
-buttons.forEach(btn => {
+    anchor.addEventListener("click", function (e) {
 
-btn.addEventListener("mouseenter", () => {
+        e.preventDefault();
 
-btn.style.transition = ".3s ease";
+        const target = document.querySelector(
+            this.getAttribute("href")
+        );
 
-btn.style.transform = "translateY(-3px)";
+        if (target) {
 
-});
+            window.scrollTo({
 
-btn.addEventListener("mouseleave", () => {
+                top: target.offsetTop - 80,
 
-btn.style.transform = "translateY(0px)";
+                behavior: "smooth"
 
-});
+            });
+
+        }
+
+    });
 
 });
