@@ -1,285 +1,71 @@
-/*==================================================
-MEXOTOKEN
-Premium Website
-Part 1
-==================================================*/
+// ================================
+// MEXO TOKEN
+// Main Script
+// ================================
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    /*==================================
-      Copy Smart Contract
-    ==================================*/
+    // ===========================
+    // Mobile Menu
+    // ===========================
 
-    const copyButton = document.getElementById("copyContract");
-    const contract = document.getElementById("contract");
+    const menuBtn = document.querySelector(".menu-toggle");
+    const mobileMenu = document.querySelector(".mobile-menu");
 
-    if (copyButton && contract) {
+    if (menuBtn && mobileMenu) {
 
-        copyButton.addEventListener("click", async () => {
+        menuBtn.addEventListener("click", () => {
 
-            try {
+            mobileMenu.classList.toggle("active");
 
-                await navigator.clipboard.writeText(
-                    contract.textContent.trim()
-                );
-
-                const original = copyButton.innerHTML;
-
-                copyButton.innerHTML = "Copied ✓";
-
-                copyButton.style.background = "#18b35d";
-
-                setTimeout(() => {
-
-                    copyButton.innerHTML = original;
-
-                    copyButton.style.background = "";
-
-                }, 2000);
-
-            } catch (err) {
-
-                alert("Copy failed.");
-
-            }
+            menuBtn.classList.toggle("active");
 
         });
 
     }
 
-    /*==================================
-      Header Scroll Effect
-    ==================================*/
+    // ===========================
+    // Close menu after click
+    // ===========================
 
-    const header = document.querySelector("header");
+    document.querySelectorAll(".mobile-menu a").forEach(link => {
 
-    window.addEventListener("scroll", () => {
+        link.addEventListener("click", () => {
 
-        if (window.scrollY > 50) {
+            mobileMenu.classList.remove("active");
 
-            header.style.background = "rgba(5,5,5,.96)";
-            header.style.backdropFilter = "blur(22px)";
-            header.style.boxShadow =
-                "0 10px 40px rgba(0,0,0,.45)";
+            menuBtn.classList.remove("active");
 
-        } else {
-
-            header.style.background = "rgba(5,5,5,.84)";
-            header.style.boxShadow = "none";
-
-        }
+        });
 
     });
 
 });
 
-/*==================================================
-Navigation Active State
-==================================================*/
+// ===========================
+// Header Scroll Effect
+// ===========================
 
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll("nav a");
+const header = document.querySelector("header");
 
 window.addEventListener("scroll", () => {
 
-    let current = "";
+    if (window.scrollY > 40) {
 
-    sections.forEach(section => {
+        header.classList.add("scrolled");
 
-        const top = section.offsetTop - 140;
-        const height = section.offsetHeight;
+    } else {
 
-        if (window.scrollY >= top &&
-            window.scrollY < top + height) {
+        header.classList.remove("scrolled");
 
-            current = section.getAttribute("id");
-
-        }
-
-    });
-
-    navLinks.forEach(link => {
-
-        link.classList.remove("active");
-
-        if (link.getAttribute("href") === "#" + current) {
-
-            link.classList.add("active");
-
-        }
-
-    });
+    }
 
 });
 
 
-/*==================================================
-Reveal Animation
-==================================================*/
-
-const revealItems = document.querySelectorAll(
-
-".about-card,\
-.token-card,\
-.team-card,\
-.roadmap-card,\
-.faq-item"
-
-);
-
-const observer = new IntersectionObserver(
-
-(entries)=>{
-
-entries.forEach(entry=>{
-
-if(entry.isIntersecting){
-
-entry.target.classList.add("show");
-
-}
-
-});
-
-},
-
-{
-
-threshold:0.18
-
-}
-
-);
-
-revealItems.forEach(item=>{
-
-item.classList.add("hidden");
-
-observer.observe(item);
-
-});
-
-
-/*==================================================
-Smooth Hover Buttons
-==================================================*/
-
-const buttons = document.querySelectorAll(
-
-".gold-btn,\
-.outline-btn,\
-.hero-community-btn,\
-.launch-btn"
-
-);
-
-buttons.forEach(button=>{
-
-button.addEventListener("mouseenter",()=>{
-
-button.style.transform="translateY(-3px)";
-
-});
-
-button.addEventListener("mouseleave",()=>{
-
-button.style.transform="translateY(0px)";
-
-});
-
-});
-
-.hidden{
-
-opacity:0;
-transform:translateY(35px);
-transition:.8s ease;
-
-}
-
-.show{
-
-opacity:1;
-transform:translateY(0);
-
-}
-
-nav a.active{
-
-color:#ffb000;
-
-}
-
-nav a.active::after{
-
-width:100%;
-
-}
-/*==================================================
-Hero Logo Parallax
-==================================================*/
-
-const heroLogo = document.querySelector(".hero-logo");
-
-document.addEventListener("mousemove", (e) => {
-
-    if (!heroLogo) return;
-
-    const x = (window.innerWidth / 2 - e.clientX) / 45;
-    const y = (window.innerHeight / 2 - e.clientY) / 45;
-
-    heroLogo.style.transform =
-        `translate(${x}px, ${y}px)`;
-
-});
-
-
-/*==================================================
-Floating Cards Animation
-==================================================*/
-
-const floatingCards = document.querySelectorAll(".floating-card");
-
-floatingCards.forEach((card, index) => {
-
-    const speed = (index + 1) * 0.8;
-
-    setInterval(() => {
-
-        const offset = Math.sin(Date.now() / 1000 * speed) * 6;
-
-        card.style.transform = `translateY(${offset}px)`;
-
-    }, 30);
-
-});
-
-
-/*==================================================
-Hero Logo Hover
-==================================================*/
-
-if (heroLogo) {
-
-    heroLogo.addEventListener("mouseenter", () => {
-
-        heroLogo.style.transition = ".4s ease";
-        heroLogo.style.scale = "1.04";
-
-    });
-
-    heroLogo.addEventListener("mouseleave", () => {
-
-        heroLogo.style.scale = "1";
-
-    });
-
-}
-
-
-/*==================================================
-Smooth Scroll For Internal Links
-==================================================*/
+// ===========================
+// Smooth Scroll
+// ===========================
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
@@ -287,22 +73,64 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
         e.preventDefault();
 
-        const target = document.querySelector(
-            this.getAttribute("href")
-        );
+        const target = document.querySelector(this.getAttribute("href"));
 
         if (target) {
 
-            window.scrollTo({
+            target.scrollIntoView({
 
-                top: target.offsetTop - 80,
+                behavior: "smooth",
 
-                behavior: "smooth"
+                block: "start"
 
             });
 
         }
 
     });
+
+});
+
+// ===========================
+// Reveal Animation
+// ===========================
+
+const revealElements = document.querySelectorAll(".reveal");
+
+const revealOnScroll = () => {
+
+    const trigger = window.innerHeight * 0.85;
+
+    revealElements.forEach(el => {
+
+        const top = el.getBoundingClientRect().top;
+
+        if (top < trigger) {
+
+            el.classList.add("active");
+
+        }
+
+    });
+
+};
+
+window.addEventListener("scroll", revealOnScroll);
+window.addEventListener("load", revealOnScroll);
+
+
+// ===========================
+// Back To Top on Refresh
+// ===========================
+
+if ("scrollRestoration" in history) {
+
+    history.scrollRestoration = "manual";
+
+}
+
+window.addEventListener("load", () => {
+
+    window.scrollTo(0, 0);
 
 });
