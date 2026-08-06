@@ -1,156 +1,160 @@
-// ================================
-// MEXOCHAIN
-// Premium Script
-// ================================
+/* ==========================================
+   MEXOTOKEN
+   Premium Website
+========================================== */
 
-const contractButton = document.getElementById("copyContract");
-const contractText = document.getElementById("contract");
+document.addEventListener("DOMContentLoaded", () => {
 
-if (contractButton) {
+const copyButton = document.getElementById("copyContract");
 
-contractButton.addEventListener("click",()=>{
+const contract = document.getElementById("contract");
 
-navigator.clipboard.writeText(contractText.innerText);
+if (copyButton && contract) {
 
-const oldText = contractButton.innerText;
+copyButton.addEventListener("click", async () => {
 
-contractButton.innerText="Copied ✓";
+try {
 
-setTimeout(()=>{
+await navigator.clipboard.writeText(contract.textContent.trim());
 
-contractButton.innerText=oldText;
+const originalText = copyButton.textContent;
 
-},1800);
+copyButton.textContent = "Copied ✓";
+
+copyButton.style.background = "#1ba94c";
+
+setTimeout(() => {
+
+copyButton.textContent = originalText;
+
+copyButton.style.background = "";
+
+}, 2000);
+
+} catch (error) {
+
+alert("Unable to copy contract address.");
+
+}
 
 });
 
 }
 
-// ===================================
-// Reveal Animation
-// ===================================
+});
 
-const revealItems=document.querySelectorAll(
+.hidden{
 
-".about-card,.token-card,.team-card,.roadmap-card,.faq-item"
+opacity:0;
+transform:translateY(35px);
+transition:.8s ease;
 
+}
+
+.show{
+
+opacity:1;
+transform:translateY(0);
+
+}
+
+nav a.active{
+
+color:#ffb000;
+
+}
+
+nav a.active::after{
+
+width:100%;
+
+}
+
+/* ==========================================
+   Hero Coin Parallax
+========================================== */
+
+const heroLogo = document.querySelector(".hero-logo");
+
+document.addEventListener("mousemove", (e) => {
+
+if (!heroLogo) return;
+
+const x = (window.innerWidth / 2 - e.clientX) / 45;
+const y = (window.innerHeight / 2 - e.clientY) / 45;
+
+heroLogo.style.transform =
+`translate(${x}px, ${y}px)`;
+
+});
+
+
+/* ==========================================
+   Floating Cards Animation
+========================================== */
+
+const cards = document.querySelectorAll(".floating-card");
+
+cards.forEach((card, index) => {
+
+const speed = (index + 1) * 0.6;
+
+setInterval(() => {
+
+const offset = Math.sin(Date.now() / 1200 * speed) * 6;
+
+card.style.transform = `translateY(${offset}px)`;
+
+}, 30);
+
+});
+
+
+/* ==========================================
+   Hero Logo Hover
+========================================== */
+
+if (heroLogo) {
+
+heroLogo.addEventListener("mouseenter", () => {
+
+heroLogo.style.transition = ".4s ease";
+
+heroLogo.style.scale = "1.04";
+
+});
+
+heroLogo.addEventListener("mouseleave", () => {
+
+heroLogo.style.scale = "1";
+
+});
+
+}
+
+
+/* ==========================================
+   Buttons Hover Effect
+========================================== */
+
+const buttons = document.querySelectorAll(
+".gold-btn,.outline-btn,.hero-community-btn,.launch-btn"
 );
 
-const revealObserver=new IntersectionObserver(
+buttons.forEach(btn => {
 
-(entries)=>{
+btn.addEventListener("mouseenter", () => {
 
-entries.forEach(entry=>{
+btn.style.transition = ".3s ease";
 
-if(entry.isIntersecting){
-
-entry.target.style.opacity="1";
-
-entry.target.style.transform="translateY(0)";
-
-}
+btn.style.transform = "translateY(-3px)";
 
 });
 
-},
+btn.addEventListener("mouseleave", () => {
 
-{
-
-threshold:.15
-
-}
-
-);
-
-revealItems.forEach(item=>{
-
-item.style.opacity="0";
-
-item.style.transform="translateY(60px)";
-
-item.style.transition=".8s ease";
-
-revealObserver.observe(item);
+btn.style.transform = "translateY(0px)";
 
 });
 
-// ===================================
-// Mouse Glow
-// ===================================
-
-const glowLeft=document.querySelector(".glow-left");
-const glowRight=document.querySelector(".glow-right");
-
-document.addEventListener("mousemove",(e)=>{
-
-const x=e.clientX/window.innerWidth;
-
-const y=e.clientY/window.innerHeight;
-
-if(glowLeft){
-
-glowLeft.style.transform=
-
-`translate(${x*40}px,${y*40}px)`;
-
-}
-
-if(glowRight){
-
-glowRight.style.transform=
-
-`translate(${-x*50}px,${-y*50}px)`;
-
-}
-
 });
-
-// ===================================
-// Smooth Header
-// ===================================
-
-const header=document.querySelector("header");
-
-window.addEventListener("scroll",()=>{
-
-if(window.scrollY>40){
-
-header.style.background="rgba(5,5,5,.82)";
-
-header.style.boxShadow="0 10px 40px rgba(0,0,0,.35)";
-
-}else{
-
-header.style.background="rgba(5,5,5,.55)";
-
-header.style.boxShadow="none";
-
-}
-
-});
-
-// ===================================
-// Floating Hero Logo
-// ===================================
-
-const heroLogo=document.querySelector(".hero-logo");
-
-let angle=0;
-
-function animateHero(){
-
-angle+=0.01;
-
-if(heroLogo){
-
-heroLogo.style.transform=
-
-`translateY(${Math.sin(angle)*10}px)`;
-
-}
-
-requestAnimationFrame(animateHero);
-
-}
-
-animateHero();
